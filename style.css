@@ -1,0 +1,29 @@
+html {
+    --text: #0e010d;
+    --background: #feecfb;
+    --primary: #f40be0;
+    --secondary: #f380f9;
+    --accent: #f472fd;
+}
+
+body {
+    color: var(--text);
+    background: var(--background);
+    font-family: Arial, sans-serif
+    h1,
+    h3 {
+        color: var(--primary);
+        
+    }
+    img {
+        border: 4px solid var(--accent);
+        border-radius: 8px;
+    }
+    audio {
+        border: 4px solid var(--accent);
+        border-radius: 8px;
+    }
+    li::marker {
+        color: var(--secondary);
+    
+}
