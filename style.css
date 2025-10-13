@@ -2,7 +2,7 @@ html {
     --text: #fcf4fb;
     --background: #09060e;
     --primary: #e32c0c;
-    --secondary: #f8d0d0;
+    --secondary: #e9a7a7;
     --accent: #070808;
 }
 * {
@@ -50,4 +50,8 @@ h1{
 }
 h2{
     text-decoration: underline;
+}
+a {
+    color: var(--secondary);
+    text-decoration: none;
 }
