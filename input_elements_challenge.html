@@ -83,9 +83,11 @@
         btnGreet.addEventListener("click", () => {
             let name = nameInput.value;
             let age = ageInput.value;
-            greetingOutput.innerText = "Hello " + name + ", you are" + age + " years old!";
+            greetingOutput.textContent = "Hello " + name + ", you are " + age + " years old!";
             // TODO: Display a message like "Hello NAME, you are AGE years old!"
             // Challenge: If age < 13, show "You're just a kid!" instead.
+            if (age < 13)
+                greetingOutput.textContent = " You're just a kid!";
         });
 
         // --- PART 2 ---
@@ -93,8 +95,26 @@
         const volumeInput = document.getElementById("volumeInput");
         const colorOutput = document.getElementById("colorOutput");
 
-        // TODO: Update the background color of colorOutput whenever the color input changes.
-        // Challenge: Also display the hex code and volume value dynamically.
+// Function to update the display
+        let updateColorOutput() {
+         const hexColor = colorInput.value;
+         const volumeValue = volumeInput.value;
+
+  // Update background color
+         colorOutput.style.backgroundColor = hexColor;
+
+  // Update text content with hex code and volume
+        colorOutput.textContent = `Color: ${hexColor} | Volume: ${volumeValue}`;
+}
+
+// Event listener for color input changes
+        colorInput.addEventListener("input", updateColorOutput);
+
+// Event listener for volume input changes
+        volumeInput.addEventListener("input", updateColorOutput);
+
+// Initial update when the page loads
+        updateColorOutput();
 
         // --- PART 3 ---
         const subscribeBox = document.getElementById("subscribeBox");
