@@ -102,9 +102,10 @@
 
         volumeInput.addEventListener("input", () => {
          let volumeValue = volumeInput.value;
-         colorOutput.textContent = `Color: ${hexColor} | Volume: ${volumeValue}`;
+         let hexColor = colorInput.value;
+         colorOutput.textContent = "Color: ${hexColor}, Volume: ${volumeValue}";
         });
-
+    
         // --- PART 3 ---
         const subscribeBox = document.getElementById("subscribeBox");
         const btnSubmit = document.getElementById("btnSubmit");
