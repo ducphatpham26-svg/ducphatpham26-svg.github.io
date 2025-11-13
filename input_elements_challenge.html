@@ -95,17 +95,15 @@
         const volumeInput = document.getElementById("volumeInput");
         const colorOutput = document.getElementById("colorOutput");
 
-// Function to update the display
-        let updateColorOutput() {
-         const hexColor = colorInput.value;
-         const volumeValue = volumeInput.value;
+        colorInput.addEventListener("input", () => {
+         let hexColor = colorInput.value;
          colorOutput.style.backgroundColor = hexColor;
-         colorOutput.textContent = `Color: ${hexColor} | Volume: ${volumeValue}`;
-        }
-        colorInput.addEventListener("input", updateColorOutput);
+        });
 
-        volumeInput.addEventListener("input", updateColorOutput);
-        updateColorOutput();
+        volumeInput.addEventListener("input", () => {
+         let volumeValue = volumeInput.value;
+         colorOutput.textContent = `Color: ${hexColor} | Volume: ${volumeValue}`;
+        });
 
         // --- PART 3 ---
         const subscribeBox = document.getElementById("subscribeBox");
