@@ -99,21 +99,12 @@
         let updateColorOutput() {
          const hexColor = colorInput.value;
          const volumeValue = volumeInput.value;
-
-  // Update background color
          colorOutput.style.backgroundColor = hexColor;
-
-  // Update text content with hex code and volume
-        colorOutput.textContent = `Color: ${hexColor} | Volume: ${volumeValue}`;
-}
-
-// Event listener for color input changes
+         colorOutput.textContent = `Color: ${hexColor} | Volume: ${volumeValue}`;
+        }
         colorInput.addEventListener("input", updateColorOutput);
 
-// Event listener for volume input changes
         volumeInput.addEventListener("input", updateColorOutput);
-
-// Initial update when the page loads
         updateColorOutput();
 
         // --- PART 3 ---
