@@ -103,17 +103,27 @@
         volumeInput.addEventListener("input", () => {
          let volumeValue = volumeInput.value;
          let hexColor = colorInput.value;
-         colorOutput.textContent = "Color: ${hexColor}, Volume: ${volumeValue}";
+         colorOutput.textContent = "Color: " + hexColor + ", Volume: " + volumeValue;
         });
     
         // --- PART 3 ---
         const subscribeBox = document.getElementById("subscribeBox");
         const btnSubmit = document.getElementById("btnSubmit");
         const modeOutput = document.getElementById("modeOutput");
-
-        btnSubmit.addEventListener("click", () => {
             // TODO: Find which radio button is checked and display it.
             // Challenge: Include whether the user subscribed or not.
+        btnSubmit.addEventListener("click", () => {
+            let modes = document.getElementsByName("mode");
+            let selectedMode;
+            for (let mode of modes) {
+                if (mode.checked) {
+                    selectedMode = mode.value;
+                    break;
+                }
+                
+            }
+            let subscribed = subscribeBox.checked ? "subscribed" : "not subscribed";
+            modeOutput.textContent = "Mode: " + selectedMode + ", You have " +  subscribed + " to the newsletter.";
         });
     </script>
 </body>
