@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Joke</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 0.5rem;
+    }
+    .output {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 2px solid red;
+      background: #ffe5e5;
+      font-weight: bold;
+      color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <h1>Please create an account and password</h1>
+  <section id="account">
+    <label for="username">Username:
+    <input type="text" id="username" name="username" placeholder="Enter your username">
+    </label>
+    <label for="password">Password:
+    <input type="password" id="password" name="password" placeholder="Enter your password">
+    </label>
+    <button type="submit">Submit</button>
+    <div class="output" id="greetingOutput"></div>
+  </section>
+
+  <audio id="jokeSound" src="thayba.mp3"></audio>
+
+  <script>
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const submitButton = document.querySelector('button[type="submit"]');
+    const outputDiv = document.getElementById('greetingOutput');
+    const jokeSound = document.getElementById('jokeSound');
+
+    submitButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+
+      if (username && password) {
+        outputDiv.innerHTML = `
+          Account created! <br>
+          <strong>Username:</strong> ${username} <br>
+          <strong>Password:</strong> ${password} <br>
+          <em>(Now everyone can see it!)</em>
+        `;
+        jokeSound.play();
+      } else {
+        outputDiv.textContent = ' Please enter both username and password.';
+      }
+    });
+  </script>
+</body>
+</html>
