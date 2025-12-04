@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Joke</title>
+  <title>Minesweeper Demo</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
     label { display: block; margin-top: 0.5rem; }
-    .output {
-      margin-top: 1rem; padding: 1rem; border: 2px solid red;
-      background: #ffe5e5; font-weight: bold; color: darkred;
-    }
+    .output { margin-top: 1rem; padding: 1rem; border: 2px solid red;
+      background: #ffe5e5; font-weight: bold; color: darkred; }
     #gameMenu { margin-top: 1rem; display: none; }
     #gameArea { margin-top: 1rem; border: 2px solid #333; padding: 1rem; min-height: 200px; }
+    #instructionsBox { margin-top: 1rem; padding: 1rem; border: 2px solid blue; background: #eef; display:none; }
 
     .grid { display: grid; gap: 4px; margin-top: 10px; }
     .cell {
@@ -21,10 +20,11 @@
       user-select: none;
     }
     .cell.revealed { background: #e0e0e0; color: #333; cursor: default; }
+    .colorBtn { margin-right: 5px; }
   </style>
 </head>
 <body>
-  <h1>Please create an account and password</h1>
+  <h1>Create an account and password</h1>
   <form id="accountForm" novalidate action="#">
     <label for="username">Username:
       <input type="text" id="username" name="username" placeholder="Enter your username" />
@@ -38,10 +38,19 @@
   <div class="output" id="greetingOutput"></div>
 
   <section id="gameMenu">
-    <h2>Choose a game</h2>
+    <h2>Options</h2>
     <button id="startMinesweeper">Start Minesweeper</button>
+    <button id="showInstructions">Minesweeper Instructions</button>
+    <div style="margin-top:10px;">
+      <span>Change background:</span>
+      <button class="colorBtn" data-color="lightblue">Light Blue</button>
+      <button class="colorBtn" data-color="lightgreen">Light Green</button>
+      <button class="colorBtn" data-color="lightyellow">Light Yellow</button>
+      <button class="colorBtn" data-color="white">Reset</button>
+    </div>
   </section>
 
+  <div id="instructionsBox"></div>
   <div id="gameArea"></div>
 
   <audio id="jokeSound" src="thayba.mp3.mp3"></audio>
@@ -54,7 +63,10 @@
       const gameMenu = document.getElementById('gameMenu');
       const startBtn = document.getElementById('startMinesweeper');
       const gameArea = document.getElementById('gameArea');
-
+      const instrBtn = document.getElementById('showInstructions');
+      const instrBox = document.getElementById('instructionsBox');
+      const colorBtns = document.querySelectorAll('.colorBtn');
+      
       form.addEventListener('submit', (event) => {
         event.preventDefault();
         const username = document.getElementById('username').value.trim();
@@ -73,7 +85,25 @@
           outputDiv.textContent = 'Please enter both username and password.';
         }
       });
-
+      colorBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.body.style.backgroundColor = btn.dataset.color;
+        });
+      });
+      instrBtn.addEventListener('click', () => {
+        instrBox.style.display = 'block';
+        instrBox.innerHTML = `
+          <h3>Minesweeper Instructions</h3>
+          <ul>
+            <li>Goal: Open all safe cells without mines.</li>
+            <li>Left click to reveal a cell.</li>
+            <li>Numbers show how many mines are around that cell.</li>
+            <li>Right click to place a flag where you suspect a mine.</li>
+            <li>You win when all safe cells are revealed.</li>
+            <li>You lose if you click on a mine.</li>
+          </ul>
+        `;
+      });
       function startMinesweeper(rows=6, cols=6, mines=8) {
         gameArea.innerHTML = "<h3>Minesweeper (6x6)</h3><div id='mineGrid' class='grid'></div>";
         const gridDiv = document.getElementById('mineGrid');
@@ -97,7 +127,7 @@
               if (minePositions.has(idx)) {
                 cell.textContent = "💣";
                 cell.classList.add('revealed');
-                alert("You lost !");
+                alert("You lost!");
               } else {
                 const adj = countAdjacent(idx, rows, cols, minePositions);
                 cell.textContent = adj > 0 ? adj : "";
