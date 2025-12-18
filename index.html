@@ -1,60 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bungee&family=SUSE+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+  <title>.</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <a href="class_links.html">Class Links</a>
-  <a href=https://fern7nando7.github.io>My partner Page</a>
-  <a href="vietnam.html">Vietnam</a>
-  <a href="mousetrail.html">Mouse Trail</a>
-    <h1>1. Objective of the match</h1>
-    <p>- To start the game, the two players must choose a certain group of balls for themselves, <u>Striped and
-        Solid</u>. <br>- Balls numbered 1 to 7 are solid balls, balls numbered 9 to 15 are striped balls. <br>- To end
-      the game, the players must hit all the above balls and pocket the last ball numbered 8.</p>
-    <h2> 2. Arrange the marbles</h2>
-    <p>- The inside balls will be arranged in a triangle with the 8 ball in the middle of the triangle. <br>- Each type
-      of object ball will have one ball of this type at the top and one ball of the other type at the bottom and the two
-      corners will also be arranged alternately like this one solid ball and one striped ball.</p>
-    <h2> 3. Order of opening</h2>
-    <p>- The winner of the opening contest will open first. <br>- In this category, the winner of each game will open
-      the next game unless the rules are changed by the 8 ball pool organizer and specifically as follows:</p>
-    <ul>
-      <li>Losing Player Opens</li>
-      <li>Players Alternate Openings</li>
-      <li>Winning Player Opens</li>
-    </ul>
-    <h2>4. Legal opening</h2>
-    <p>- The player opens with the cue ball placed behind the head rail and pockets the object ball provided that at
-      least four object balls touch the rail. If the shot does not meet the above criteria, it is considered a foul.</p>
-    <p>- The next player has the option to continue shooting with the ball in the same position or to ask the referee to
-      re-rack the ball to make the opening or to ask the opponent to re-open.</p>
-    <h2>5. Scoring</h2>
-    <p>- A player may continue to shoot until he cannot legally pocket any object ball in any group of balls. After
-      pocketing all his balls in the group, he finishes by pocketing the 8 ball.</p>
-    <h2>6. Penalty</h2>
-    <p>- When a player commits a foul, the next player to take the cue ball will have the right to place the cue ball
-      anywhere on the table. This is meant to prevent players from intentionally committing a foul to put their
-      opponents at a disadvantage.</p>
-    <h2>Lost the game</h2>
-    <p>- A player is considered to have lost the game if he/she:</p>
-    <ul>
-      <li>Fouls the 8 ball into a pocket while there are still object balls in the pool.</li>
-      <li>Causes the 8 ball to fall off the board</li>
-      <li>Pockets the 8 ball when it is not an object ball</li>
-      <li>Pockets the 8 ball in a pocket other than the designated pocket</li>
-    </ul>
-    <p><a href="https://en.wikipedia.org/wiki/Eight-ball?scrlybrkr=9a5bf79a">8 ball for more</a></p>
-    <img src="8 ball.png" alt="8ballpool" width="200" height="200">
-    <p><audio controls src="songgg.wav"></audio></p>
+  <div id="intro">
+    <div class="message">
+      <h1>Sorry, my English is under construction</h1>
+      <button onclick="nextStep()">OK, head to the homepage</button>
+      <div id="extraMessage"></div>
+    </div>
+    <audio id="introMusic" autoplay>
+      <source src="nammo.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="boomSound">
+      <source src="boom.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div id="main">
+    <h1>About Me Page</h1>
+    <div class="cards">
+      <div class="card" onclick="openModal('banthan')">
+        <div class="card-title">👤 Myself</div>
+      </div>
+      <div class="card" onclick="openModal('kynang')">
+        <div class="card-title">💡 My Skills</div>
+      </div>
+      <div class="card" onclick="openModal('cuocsong')">
+        <div class="card-title">🌏 My Life</div>
+      </div>
+      <div class="card" onclick="openModal('datduoc')">
+        <div class="card-title">🏆 What I’ve picked up</div>
+      </div>
+      <div class="card" onclick="goToGame()">
+        <div class="card-title">🎮 Game</div>
+      </div>
+    </div>
+  </div>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+  <div id="easterEggContainer">
+    <button id="easterEggBtn">Easter Egg</button>
+    <span id="easterEggHint">Try clicking on it a few times</span>
+  </div>
+  <div id="jumpScare">
+    <div id="jumpText">Looks like you’ve got nothing better to do </div>
+    <img id="eggImage" src="cho.png" alt="Easter Egg">
+  </div>
+  <audio id="eggMusic">
+    <source src="dog.mp3" type="audio/mpeg">
+  </audio>
+  <script>
+    let clickCount = 0;
+    function nextStep() {
+      clickCount++;
+      const extra = document.getElementById('extraMessage');
+      if (clickCount === 1) {
+        extra.innerHTML = "MY ENGLISH IS BAD";
+        extra.style.color = "red";
+        extra.style.fontSize = "2em";
+      } else if (clickCount === 2) {
+        extra.innerHTML = "MY ENGLISH IS BAD!!!";
+        extra.style.color = "#b71c1c";
+        extra.style.fontSize = "3em";
+      } else if (clickCount === 3) {
+        extra.innerHTML = "MY ENGLISH IS BAD!!!!!";
+        extra.style.color = "darkred";
+        extra.style.fontSize = "4em";
+        document.getElementById('boomSound').play();
+        document.body.classList.add('shake');
+        setTimeout(() => {
+          document.getElementById('intro').style.display = 'none';
+          const main = document.getElementById('main');
+          main.classList.add('show');
+          document.getElementById('introMusic').pause();
+          document.body.classList.remove('shake');
+        }, 1000);
+      }
+    }
+    function openModal(type) {
+      const modal = document.getElementById('modal');
+      const title = document.getElementById('modalTitle');
+      const text = document.getElementById('modalText');
 
-
+      if (type === 'banthan') {
+        title.innerText = "👤 Myself";
+        text.innerText = "Hi, I’m Phat Pham from Vietnam. My website shines in red and yellow — the colors of my country’s flag. Through a few lines here, I hope you’ll get to know me better.";
+      } else if (type === 'kynang') {
+        title.innerText = "💡 My Skills";
+        text.innerText = "Here are a few skills I think are useful and Im proud of:\n- HTML: 90% (70% powered by Google and AI)\n- Photoshop: 60% (enough to delete my ex from our photos)\n- Deadline survival: 120%";
+      } else if (type === 'cuocsong') {
+        title.innerText = "🌏 My Life";
+        text.innerText = "Morning study, afternoon workout, night sleep — day over";
+      } else if (type === 'datduoc') {
+        title.innerText = "🏆 What I’ve picked up";
+        text.innerText = "After all my learning, my superpower isn’t coding — it’s bug creation ";
+      }
+      modal.style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = "none";
+    }
+    let eggClicks = 0;
+    const eggBtn = document.getElementById('easterEggBtn');
+    const eggMusic = document.getElementById('eggMusic');
+    const jumpScare = document.getElementById('jumpScare');
+    eggBtn.addEventListener('click', () => {
+      eggClicks++;
+      if (eggClicks === 5) {
+        jumpScare.style.display = 'flex';
+        eggMusic.play();
+        eggClicks = 0;
+        eggMusic.onended = () => {
+          jumpScare.style.display = 'none';
+        };
+      }
+    function goToGame() {
+  // Chuyển sang trang game, bạn có thể đổi link này
+     window.location.href = "minesweeper.html"; 
+  // hoặc: window.location.href = "https://example.com/game";
+}
+    });
+  </script>
 </body>
-
 </html>
